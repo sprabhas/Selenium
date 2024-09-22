@@ -1,0 +1,50 @@
+package Week2.day1;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Classrmassin_weektwodayone {
+	
+	public static void main(String[] args) {
+		//initialize chrome driver
+		ChromeDriver driver = new ChromeDriver();		
+		//mazimize the screen
+		driver.manage().window().maximize();		
+		//loading the url
+		driver.get("http://leaftaps.com/opentaps/");		
+		WebElement user = driver.findElement(By.id("username"));
+		user.sendKeys("demosalesmanager");
+		driver.findElement(By.id("password")).sendKeys("crmsfa");
+		WebElement login = driver.findElement(By.className("decorativeSubmit"));
+		login.click();
+		
+		//driver.close();		
+		driver.findElement(By.linkText("CRM/SFA")).click();
+		driver.findElement(By.linkText("Leads")).click();
+		driver.findElement(By.linkText("Create Lead")).click();
+		
+		//entering the mandatory details
+		driver.findElement(By.id("createLeadForm_firstName")).sendKeys("Muthu Prabha");
+		driver.findElement(By.id("createLeadForm_lastName")).sendKeys("S");
+		driver.findElement(By.id("createLeadForm_companyName")).sendKeys("Virtusa");
+		
+		WebElement source_sel = driver.findElement(By.id("createLeadForm_dataSourceId"));
+		Select dropdown = new Select(source_sel);
+		dropdown.selectByIndex(4);
+		
+		WebElement marketing_sel = driver.findElement(By.id("createLeadForm_marketingCampaignId"));
+		Select dropdown1 = new Select(marketing_sel);
+		dropdown1.selectByVisibleText("Automobile");
+		
+		WebElement owner_sel = driver.findElement(By.id("createLeadForm_ownershipEnumId"));
+		Select dropdown2 = new Select(owner_sel);
+		dropdown2.selectByValue("OWN_CCORP");
+		
+		WebElement create = driver.findElement(By.name("submitButton"));
+		create.click();
+		
+		
+	}
+}
